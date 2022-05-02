@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="photo_episode_size_card">100dp</dimen>
+    <dimen name="padding_common_min">8dp</dimen>
+    <dimen name="radius_cards">15dp</dimen>
+    <dimen name="elevation_cards">16dp</dimen>
+    <dimen name="photo_anime_size_card">250dp</dimen>
+</resources>

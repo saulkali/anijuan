@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/btnActionHome"
+        android:icon="@drawable/ic_home"
+        android:title="@string/btn_action_home_title" />
+    <item
+        android:id="@+id/btnActionAnime"
+        android:icon="@drawable/ic_source"
+        android:title="@string/btn_action_anime_title" />
+    <item
+        android:id="@+id/btnActionIssue"
+        android:icon="@drawable/ic_wifi_tethering"
+        android:title="@string/btn_action_issue_title" />
+    <item
+        android:id="@+id/btnActionSeeLatter"
+        android:icon="@drawable/ic_watch_later"
+        android:title="@string/btn_action_see_latter_title" />
+</menu>

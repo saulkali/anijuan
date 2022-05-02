@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_common_min"
+    app:cardCornerRadius="@dimen/radius_cards"
+    android:elevation="@dimen/elevation_cards"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivPhotoAnime"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/photo_anime_size_card"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvNameAnime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:text="Naruto shippuden"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivPhotoAnime"
+            />
+
+        <TextView
+            android:id="@+id/tvSeasonAnime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Temporada 1"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNameAnime"
+            />
+
+        <TextView
+            android:id="@+id/tvDescriptionAnime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceSubtitle2"
+            android:text="aasdasdasdaadsfadfadfaasdfadsfadsfasdfasdfasdfadsfasdfasdfasdfasdfasdfasdfasdfasdfasdfasfasdfadf"
+            android:layout_marginHorizontal="@dimen/padding_common_min"
+            android:maxLines="3"
+            android:ellipsize="end"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSeasonAnime"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

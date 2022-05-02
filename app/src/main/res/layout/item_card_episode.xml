@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/padding_common_min"
+    app:cardCornerRadius="@dimen/radius_cards"
+    android:elevation="@dimen/elevation_cards"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivPhotoEpisode"
+            android:layout_width="@dimen/photo_episode_size_card"
+            android:layout_height="@dimen/photo_episode_size_card"
+            android:src="@mipmap/ic_launcher"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvNameEpisode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Eren se da en su perra madre"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            android:layout_marginHorizontal="@dimen/padding_common_min"
+            app:layout_constraintTop_toTopOf="@id/ivPhotoEpisode"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvNumberEpisode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Capitulo 12"
+            android:textAlignment="center"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintTop_toBottomOf="@id/tvNameEpisode"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvDescriptionEpisode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="dfaoijfoaijeofjaoeijfoiajeoifjaodjfajdnfkanvkanfknvaofnvaojdnkvjanfkvankvkankfjvnakfnjkaakjndjknfkjnk"
+            android:layout_marginHorizontal="@dimen/padding_common_min"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNumberEpisode"
+            app:layout_constraintBottom_toBottomOf="@id/ivPhotoEpisode"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

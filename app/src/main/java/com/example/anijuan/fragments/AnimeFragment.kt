@@ -1,5 +1,6 @@
 package com.example.anijuan.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -63,6 +64,11 @@ class AnimeFragment : Fragment() {
                 return AnimeHolder(view)
             }
 
+            @SuppressLint("NotifyDataSetChanged") // bug interno firebase 8.0.0
+            override fun onDataChanged() {
+                super.onDataChanged()
+                notifyDataSetChanged()
+            }
             override fun onBindViewHolder(holder: AnimeHolder, position: Int, model: Anime) {
                 val anime = getItem(position)
                 with(holder){

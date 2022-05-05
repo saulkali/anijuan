@@ -1,10 +1,11 @@
 package com.example.anijuan
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.anijuan.databinding.ActivityMainBinding
@@ -12,8 +13,6 @@ import com.example.anijuan.fragments.AnimeFragment
 import com.example.anijuan.fragments.HomeFragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
-import java.security.AuthProvider
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     //viewBinding
@@ -31,11 +30,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
         setupAuth()
         setupBottomNav()
+        setupAppBar()
     }
 
+    private fun setupAppBar() {
+        mBinding.tbMain.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.btnActionLogOut -> {
+                    if (mFireBaseAuth != null) {
+                        mFireBaseAuth!!.signOut()
+                        finish()
+                    }
+                    true
+                }
+                else -> true
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_app_bar,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     private fun setupBottomNav() {
         val homeFragment = HomeFragment()
         val animeFragment = AnimeFragment()
@@ -77,20 +95,27 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
+
     private fun setupAuth() {
         mFireBaseAuth = FirebaseAuth.getInstance()
         mAuthListener = FirebaseAuth.AuthStateListener {
+
             val user = it.currentUser
+
             if(user == null) {
-                val intent = AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
-                    listOf(
-                        AuthUI.IdpConfig.EmailBuilder().build(),
-                        AuthUI.IdpConfig.GoogleBuilder().build()
-                    )
-                ).build()
+                val intent = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setIsSmartLockEnabled(false)
+                    .setAvailableProviders(
+                        listOf(
+                            AuthUI.IdpConfig.EmailBuilder().build(),
+                            AuthUI.IdpConfig.GoogleBuilder().build()
+                        )
+                    ).build()
                 auth.launch(intent)
             }
         }
+
         mFireBaseAuth?.addAuthStateListener(mAuthListener)
     }
 
@@ -98,8 +123,10 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         mFireBaseAuth?.removeAuthStateListener(mAuthListener)
     }
+
     override fun onResume() {
         super.onResume()
         mFireBaseAuth?.addAuthStateListener(mAuthListener)
     }
+
 }

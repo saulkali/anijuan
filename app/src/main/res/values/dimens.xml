@@ -5,4 +5,5 @@
     <dimen name="radius_cards">15dp</dimen>
     <dimen name="elevation_cards">16dp</dimen>
     <dimen name="photo_anime_size_card">250dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

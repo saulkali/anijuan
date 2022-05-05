@@ -11,5 +11,6 @@ data class Episode(
     var description:String? = "",
     var date: Date? = null,
     var episode: Double = 0.0,
+    var urlVideo:String = "",
     var anime: Anime? = null
     )

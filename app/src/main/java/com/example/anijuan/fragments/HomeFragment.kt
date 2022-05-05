@@ -1,6 +1,8 @@
 package com.example.anijuan.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anijuan.R
+import com.example.anijuan.activitys.PlayerActivity
 import com.example.anijuan.databinding.FragmentHomeBinding
 import com.example.anijuan.databinding.ItemCardEpisodeBinding
 import com.example.anijuan.entitys.Episode
@@ -44,7 +47,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val query = FirebaseDatabase.getInstance().reference.child("episodes")
+        val query = FirebaseDatabase.getInstance().reference.child(EPISODES)
 
         val options = FirebaseRecyclerOptions.Builder<Episode>()
             .setQuery(query,Episode::class.java).build()
@@ -59,8 +62,10 @@ class HomeFragment : Fragment() {
                 return EpisodeHolder(view)
             }
 
+            @SuppressLint("NotifyDataSetChanged") // bug en firebase 8.0.0
             override fun onDataChanged() {
                 super.onDataChanged()
+                notifyDataSetChanged()
                 Toast.makeText(context, "datos cargados", Toast.LENGTH_SHORT).show()
             }
 
@@ -68,16 +73,22 @@ class HomeFragment : Fragment() {
                 super.onError(error)
                 Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
             }
+
             override fun onBindViewHolder(holder: EpisodeHolder, position: Int, model: Episode) {
                 val episode = getItem(position)
                 with(holder){
                     binding.tvNameEpisode.text = episode.name
                     binding.tvDescriptionEpisode.text = episode.description
                     binding.tvNumberEpisode.text = getString(R.string.episode_subtitle) + episode.episode.toString()
+
                     Glide.with(mContext)
                         .load(episode.photoUrl)
                         .centerCrop()
                         .into(binding.ivPhotoEpisode)
+
+                    binding.root.setOnClickListener {
+                        openVideoListener(episode)
+                    }
                 }
             }
         }
@@ -90,6 +101,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+
     override fun onStart() {
         super.onStart()
         mFirebaseAdapter.startListening()
@@ -99,11 +111,23 @@ class HomeFragment : Fragment() {
         super.onStop()
         mFirebaseAdapter.stopListening()
     }
+
+    private fun startVideo(url:String){
+        val intent = Intent(context,PlayerActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
+
+    }
+
     inner class EpisodeHolder(view: View):RecyclerView.ViewHolder(view){
         val binding = ItemCardEpisodeBinding.bind(view)
 
         fun setListener(episode:Episode){
 
+        }
+
+        fun openVideoListener(episode: Episode){
+            startVideo(episode.urlVideo)
         }
     }
 

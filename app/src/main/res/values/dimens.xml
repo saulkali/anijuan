@@ -6,4 +6,8 @@
     <dimen name="elevation_cards">16dp</dimen>
     <dimen name="photo_anime_size_card">250dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="anime_details_card_size">250dp</dimen>
+    <dimen name="cover_page_anime_details_width">150dp</dimen>
+    <dimen name="circle_season_info">52dp</dimen>
+    <dimen name="rv_height_issue">150dp</dimen>
 </resources>

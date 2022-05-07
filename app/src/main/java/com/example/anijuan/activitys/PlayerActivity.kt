@@ -1,12 +1,12 @@
 package com.example.anijuan.activitys
 
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.*
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
-import android.webkit.WebViewClient
+import android.view.KeyEvent
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.webkit.*
+import androidx.appcompat.app.AppCompatActivity
 import com.example.anijuan.R
 import com.example.anijuan.databinding.ActivityPlayerBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -14,7 +14,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 class PlayerActivity : AppCompatActivity() {
 
     private lateinit var mBinding:ActivityPlayerBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +64,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     private fun openVideo(url:String) {
-        val frameVideo = "<html><body style='margin:0px; padding:0px;'><iframe style='width:100%; height:100%;' src='$url' frameborder='0' allowfullscreen></iframe></body></html>"
+        val frameVideo = "<html><body style='margin:0px; padding:0px;'> <iframe style='width:100%; height:100%;' src='$url' frameborder='0' allowfullscreen></iframe></body></html>"
 
         mBinding.wvVideo.webChromeClient = WebChromeClient()
         mBinding.wvVideo.webViewClient = WebViewClient()
@@ -73,10 +72,13 @@ class PlayerActivity : AppCompatActivity() {
 
         //settings webView
         mBinding.wvVideo.settings.javaScriptEnabled = true
-        mBinding.wvVideo.settings.setSupportMultipleWindows(true)
+        mBinding.wvVideo.settings.setSupportMultipleWindows(false)
+        mBinding.wvVideo.settings.javaScriptCanOpenWindowsAutomatically = false
         mBinding.wvVideo.settings.useWideViewPort = true
         mBinding.wvVideo.settings.loadWithOverviewMode = true
         mBinding.wvVideo.settings.textZoom = 100
+        mBinding.wvVideo.clearCache(true)
+        mBinding.wvVideo.settings.cacheMode = WebSettings.LOAD_CACHE_ELSE_NETWORK
 
         mBinding.wvVideo.loadData(frameVideo,"text/html","utf-8")
     }

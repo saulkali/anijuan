@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.IssueFragment"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/tvMonday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/monday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMonday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvMonday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvTuesday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/tuesday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvMonday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTuesday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvTuesday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+        <TextView
+            android:id="@+id/tvWednesday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/wednesday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvTuesday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvWednesday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvWednesday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvThursday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/thursday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvWednesday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvThursday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvThursday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvFriday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/friday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvThursday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFriday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvFriday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvSaturday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/saturday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvFriday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSaturday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvSaturday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tvSunday"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_common_min"
+            android:text="@string/sunday_title"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvSaturday"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSunday"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/rv_height_issue"
+            android:layout_margin="@dimen/padding_common_min"
+            app:layout_constraintTop_toBottomOf="@id/tvSunday"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

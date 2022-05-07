@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activitys.AnimeDetailsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/ablDetailsAnime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/tbDetailsAnime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/app_name"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvDetailsAnime"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/anime_details_card_size"
+        android:layout_margin="@dimen/padding_common_min"
+        app:cardCornerRadius="@dimen/radius_cards"
+        android:elevation="@dimen/elevation_cards"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ablDetailsAnime"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivDetailsAnimePhoto"
+                android:layout_width="@dimen/cover_page_anime_details_width"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/padding_common_min"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <TextView
+                android:id="@+id/tvNameDetailsAnime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_common_min"
+                tools:text = "Anime De Ejemplo a ver"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivDetailsAnimePhoto"
+                app:layout_constraintTop_toTopOf="@id/ivDetailsAnimePhoto"
+                />
+
+            <TextView
+                android:id="@+id/tvDescriptionDetailsAnime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/padding_common_min"
+                tools:text="Esta es la representacion de de la descripcion del anime a publicar cara loquito"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintStart_toEndOf="@id/ivDetailsAnimePhoto"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNameDetailsAnime"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/circle_season_info"
+                android:layout_height="@dimen/circle_season_info"
+                android:backgroundTint="@color/black"
+                android:layout_marginStart="@dimen/padding_common_min"
+                app:cardCornerRadius="@dimen/circle_season_info"
+                app:layout_constraintStart_toStartOf="@id/ivDetailsAnimePhoto"
+                app:layout_constraintEnd_toEndOf="@id/ivDetailsAnimePhoto"
+                app:layout_constraintBottom_toBottomOf="@id/ivDetailsAnimePhoto"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="10"
+                        />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/padding_common_min"
+        app:cardCornerRadius="@dimen/radius_cards"
+        android:elevation="@dimen/elevation_cards"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cvDetailsAnime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDetailsAnimeEpisodes"
+                android:layout_width="match_parent"
+                tools:listitem="@layout/item_card_episode"
+                android:layout_height="match_parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

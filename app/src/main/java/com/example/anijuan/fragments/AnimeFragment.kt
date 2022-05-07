@@ -2,6 +2,7 @@ package com.example.anijuan.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anijuan.R
+import com.example.anijuan.activitys.AnimeDetailsActivity
 import com.example.anijuan.databinding.FragmentAnimeBinding
 import com.example.anijuan.databinding.ItemCardAnimeBinding
 import com.example.anijuan.entitys.Anime
@@ -80,6 +82,10 @@ class AnimeFragment : Fragment() {
                         .load(anime.photoUrl)
                         .centerCrop()
                         .into(binding.ivPhotoAnime)
+
+                    binding.root.setOnClickListener {
+                        openDetailsAnimeActivity(anime)
+                    }
                 }
             }
 
@@ -92,10 +98,20 @@ class AnimeFragment : Fragment() {
         }
     }
 
+    private fun openDetailsAnime(anime: Anime){
+        val intent = Intent(context,AnimeDetailsActivity::class.java)
+        intent.putExtra("anime",anime)
+        startActivity(intent)
+    }
+
     inner class AnimeHolder(view:View):RecyclerView.ViewHolder(view){
         val binding = ItemCardAnimeBinding.bind(view)
         fun setListener(anime:Anime){
 
+        }
+
+        fun openDetailsAnimeActivity(anime:Anime){
+            openDetailsAnime(anime)
         }
     }
 

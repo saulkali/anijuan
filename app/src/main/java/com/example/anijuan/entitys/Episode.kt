@@ -1,6 +1,7 @@
 package com.example.anijuan.entitys
 
 import com.google.firebase.database.IgnoreExtraProperties
+import java.io.Serializable
 import java.util.*
 
 @IgnoreExtraProperties
@@ -11,6 +12,6 @@ data class Episode(
     var description:String? = "",
     var date: Date? = null,
     var episode: Double = 0.0,
-    var urlVideo:String = "",
+    var urlVideo: String = "",
     var anime: Anime? = null
-    )
+    ):Serializable

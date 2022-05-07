@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anijuan">
         <activity
-            android:name=".activitys.PlayerActivity"
-            android:screenOrientation="landscape"
-            android:theme="@style/Theme.Anijuan.NoActionBar"
+            android:name=".activitys.AnimeDetailsActivity"
             android:exported="false" />
+        <activity
+            android:name=".activitys.PlayerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.Anijuan.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

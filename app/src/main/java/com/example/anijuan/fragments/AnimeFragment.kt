@@ -19,6 +19,7 @@ import com.example.anijuan.databinding.ItemCardAnimeBinding
 import com.example.anijuan.entitys.Anime
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseOptions
 import com.google.firebase.database.FirebaseDatabase
 
@@ -27,6 +28,9 @@ class AnimeFragment : Fragment() {
 
     private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Anime,AnimeHolder>
     private lateinit var mLayoutManager:RecyclerView.LayoutManager
+
+    private val mUrlSeeLater = "seelaters"
+    private val mUrlAnime = "animes"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +58,7 @@ class AnimeFragment : Fragment() {
         mFirebaseAdapter.stopListening()
     }
     private fun setupFireBase() {
-        val query = FirebaseDatabase.getInstance().reference.child("animes")
+        val query = FirebaseDatabase.getInstance().reference.child(mUrlAnime)
         val options = FirebaseRecyclerOptions.Builder<Anime>().setQuery(query,Anime::class.java).build()
 
         mFirebaseAdapter = object : FirebaseRecyclerAdapter<Anime,AnimeHolder>(options){
@@ -86,6 +90,20 @@ class AnimeFragment : Fragment() {
                     binding.root.setOnClickListener {
                         openDetailsAnimeActivity(anime)
                     }
+
+                    binding.root.setOnLongClickListener {
+                        context?.let { it1 ->
+                            MaterialAlertDialogBuilder(it1)
+                                .setTitle(getString(R.string.add_later_title))
+                                .setPositiveButton(R.string.btn_confirm_dialog){ _,_ ->
+                                    saveAnimeSeeLater(anime)
+                                }
+                                .setNegativeButton(R.string.btn_cancel_dialog,null)
+                                .show()
+                        }
+                        true
+                    }
+
                 }
             }
 
@@ -96,6 +114,12 @@ class AnimeFragment : Fragment() {
             layoutManager = mLayoutManager
             adapter = mFirebaseAdapter
         }
+    }
+
+    private fun saveAnimeSeeLater(anime: Anime) {
+        // save anime see later
+        val key = FirebaseDatabase.getInstance().reference.child(mUrlSeeLater).push().key!!
+        FirebaseDatabase.getInstance().reference.child(mUrlSeeLater).child(key).setValue(anime)
     }
 
     private fun openDetailsAnime(anime: Anime){

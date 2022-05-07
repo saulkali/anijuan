@@ -30,4 +30,6 @@
     <string name="friday_title">Viernes</string>
     <string name="saturday_title">Sabado</string>
     <string name="sunday_title">Domingo</string>
+    <string name="add_later_title">¿Guardar en ver mas tarde?</string>
+    <string name="delete_later_title">Quitar de ver mas tarde</string>
 </resources>

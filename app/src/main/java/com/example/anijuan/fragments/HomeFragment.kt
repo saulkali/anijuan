@@ -62,11 +62,10 @@ class HomeFragment : Fragment() {
                 return EpisodeHolder(view)
             }
 
-            @SuppressLint("NotifyDataSetChanged") // bug en firebase 8.0.0
+            @SuppressLint("NotifyDataSetChanged") // bug interno en firebase 8.0.0
             override fun onDataChanged() {
                 super.onDataChanged()
                 notifyDataSetChanged()
-                Toast.makeText(context, "datos cargados", Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(error: DatabaseError) {

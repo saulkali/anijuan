@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anijuan">
         <activity
+            android:name=".activitys.SearchAnimeActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.AnimeDetailsActivity"
             android:exported="false" />
         <activity

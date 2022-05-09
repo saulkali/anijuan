@@ -19,6 +19,8 @@ import com.example.anijuan.databinding.ItemCardEpisodeBinding
 import com.example.anijuan.entitys.Episode
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
@@ -26,8 +28,8 @@ import com.google.firebase.database.FirebaseDatabase
 class HomeFragment : Fragment() {
 
     //global vars
-    private var EPISODES = "episodes"
-
+    private var mUrlEpisodes = "episodes"
+    private val mUrlSeeLater = "seelaters"
     //view binding
     private lateinit var mBinding:FragmentHomeBinding
 
@@ -47,10 +49,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val query = FirebaseDatabase.getInstance().reference.child(EPISODES)
+        val query = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
 
         val options = FirebaseRecyclerOptions.Builder<Episode>()
-            .setQuery(query,Episode::class.java).build()
+            .setQuery(query){
+                val episode = it.getValue(Episode::class.java)
+                episode!!.id = it.key
+                episode
+            }.build()
 
         mFirebaseAdapter = object: FirebaseRecyclerAdapter<Episode,EpisodeHolder>(options){
             private lateinit var mContext:Context
@@ -66,6 +72,7 @@ class HomeFragment : Fragment() {
             override fun onDataChanged() {
                 super.onDataChanged()
                 notifyDataSetChanged()
+                mBinding.progressBar.visibility = View.GONE
             }
 
             override fun onError(error: DatabaseError) {
@@ -87,6 +94,19 @@ class HomeFragment : Fragment() {
 
                     binding.root.setOnClickListener {
                         openVideoListener(episode)
+                    }
+                    binding.root.setOnLongClickListener {
+
+                        MaterialAlertDialogBuilder(mContext)
+                            .setTitle(R.string.add_later_title)
+                            .setPositiveButton(R.string.btn_confirm_dialog){_,_ ->
+                                saveEpisodeSeeLater(episode)
+                            }
+                            .setNegativeButton(R.string.btn_cancel_dialog,null)
+                            .show()
+
+                        saveEpisodeSeeLater(episode)
+                        true
                     }
                 }
             }
@@ -117,12 +137,22 @@ class HomeFragment : Fragment() {
         startActivity(intent)
 
     }
+    fun saveEpisodeSeeLaterFirebase(episode: Episode){
+
+        val keyUser = FirebaseAuth.getInstance().currentUser!!.uid
+        FirebaseDatabase.getInstance()
+            .reference.child(mUrlSeeLater)
+            .child(keyUser)
+            .child(mUrlEpisodes)
+            .child(episode.id.toString())
+            .setValue(episode)
+    }
 
     inner class EpisodeHolder(view: View):RecyclerView.ViewHolder(view){
         val binding = ItemCardEpisodeBinding.bind(view)
 
-        fun setListener(episode:Episode){
-
+        fun saveEpisodeSeeLater(episode: Episode){
+            saveEpisodeSeeLaterFirebase(episode)
         }
 
         fun openVideoListener(episode: Episode){

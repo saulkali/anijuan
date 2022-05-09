@@ -21,6 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseOptions
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class AnimeFragment : Fragment() {
@@ -119,7 +120,8 @@ class AnimeFragment : Fragment() {
     private fun saveAnimeSeeLater(anime: Anime) {
         // save anime see later
         val key = FirebaseDatabase.getInstance().reference.child(mUrlSeeLater).push().key!!
-        FirebaseDatabase.getInstance().reference.child(mUrlSeeLater).child(key).setValue(anime)
+        val keyUser = FirebaseAuth.getInstance().currentUser!!.uid
+        FirebaseDatabase.getInstance().reference.child(mUrlSeeLater).child(keyUser).child(mUrlAnime).child(key).setValue(anime)
     }
 
     private fun openDetailsAnime(anime: Anime){
@@ -130,9 +132,7 @@ class AnimeFragment : Fragment() {
 
     inner class AnimeHolder(view:View):RecyclerView.ViewHolder(view){
         val binding = ItemCardAnimeBinding.bind(view)
-        fun setListener(anime:Anime){
 
-        }
 
         fun openDetailsAnimeActivity(anime:Anime){
             openDetailsAnime(anime)

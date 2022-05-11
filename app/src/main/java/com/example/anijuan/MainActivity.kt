@@ -1,6 +1,7 @@
 package com.example.anijuan
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.widget.Toast
@@ -8,6 +9,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.anijuan.activitys.SearchAnimeActivity
 import com.example.anijuan.databinding.ActivityMainBinding
 import com.example.anijuan.fragments.AnimeFragment
 import com.example.anijuan.fragments.HomeFragment
@@ -32,24 +34,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        setupAuth()
-        setupBottomNav()
+
         setupAppBar()
+        setupAuth()
+
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user != null)
+            setupBottomNav()
+
     }
 
     private fun setupAppBar() {
         mBinding.tbMain.setOnMenuItemClickListener {
             when(it.itemId){
                 R.id.btnActionLogOut -> {
-                    if (mFireBaseAuth != null) {
-                        mFireBaseAuth!!.signOut()
-                        finish()
-                    }
+
+                    mFireBaseAuth?.signOut()
+                    finish()
+                    true
+                }
+                R.id.btnActionSearch -> {
+                    openSearchActivity()
                     true
                 }
                 else -> true
             }
         }
+    }
+
+    private fun openSearchActivity(){
+        val intent = Intent(this,SearchAnimeActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -110,19 +125,16 @@ class MainActivity : AppCompatActivity() {
     val auth = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
         if(it.resultCode == Activity.RESULT_OK){
             Toast.makeText(this, getString(R.string.login_welcome_title), Toast.LENGTH_SHORT).show()
-        }
-        else{
-            finish()
+            setupBottomNav()
         }
     }
 
     private fun setupAuth() {
         mFireBaseAuth = FirebaseAuth.getInstance()
+
         mAuthListener = FirebaseAuth.AuthStateListener {
-
             val user = it.currentUser
-
-            if(user == null) {
+            if (user == null) {
                 val intent = AuthUI.getInstance()
                     .createSignInIntentBuilder()
                     .setIsSmartLockEnabled(false)
@@ -137,6 +149,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         mFireBaseAuth?.addAuthStateListener(mAuthListener)
+
     }
 
     override fun onStop() {

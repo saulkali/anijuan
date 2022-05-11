@@ -42,7 +42,6 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
 
     private fun addEpisodes(episode:MutableList<Episode>){
         val layoutManage = LinearLayoutManager(this)
-
         //remove items null
         episode.removeIf {
                 obj:Episode? -> obj == null
@@ -54,7 +53,6 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
             layoutManager = layoutManage
             adapter = adapterEpisode
         }
-
     }
 
     override fun openActivityDetails(episode: Episode) {

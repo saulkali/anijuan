@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/padding_common_min"
     app:cardCornerRadius="@dimen/radius_cards"
     android:elevation="@dimen/elevation_cards"
@@ -21,6 +21,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
+
+
+
         <TextView
             android:id="@+id/tvNameEpisode"
             android:layout_width="0dp"
@@ -37,7 +40,7 @@
             android:id="@+id/tvNumberEpisode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Capitulo 12"
+            tools:text="Capitulo 12"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:layout_constraintTop_toBottomOf="@id/tvNameEpisode"
@@ -50,12 +53,25 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
             android:ellipsize="end"
-            android:text="dfaoijfoaijeofjaoeijfoiajeoifjaodjfajdnfkanvkanfknvaofnvaojdnkvjanfkvankvkankfjvnakfnjkaakjndjknfkjnk"
+            tools:text="dfaoijfoaijeofjaoeijfoiajeoifjaodjfajdnfkanvkanfknvaofnvaojdnkvjanfkvankvkankfjvnakfnjkaakjndjknfkjnk"
             android:layout_marginHorizontal="@dimen/padding_common_min"
             app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNumberEpisode"
             app:layout_constraintBottom_toBottomOf="@id/ivPhotoEpisode"
             />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbEpisodeLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/padding_common_min"
+            android:button="@drawable/states_cb_favorite"
+            android:buttonTint="@android:color/holo_red_dark"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

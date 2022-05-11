@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.anijuan.R
 import com.example.anijuan.databinding.FragmentIssueBinding
 
 class IssueFragment : Fragment() {

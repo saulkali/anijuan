@@ -84,7 +84,6 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
             val nameAnime = anime.name?.lowercase()
 
             if (nameAnime != null) {
-                Toast.makeText(applicationContext, "$filterKey in $nameAnime", Toast.LENGTH_SHORT).show()
                 if(filterKey in nameAnime){
                     listAnimeFind.add(anime)
                 }

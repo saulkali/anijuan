@@ -34,7 +34,7 @@ class AnimeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         mBinding = FragmentAnimeBinding.inflate(inflater,container,false)
         return mBinding.root
@@ -58,7 +58,11 @@ class AnimeFragment : Fragment() {
     }
     private fun setupFireBase() {
         val query = FirebaseDatabase.getInstance().reference.child(mUrlAnime)
-        val options = FirebaseRecyclerOptions.Builder<Anime>().setQuery(query,Anime::class.java).build()
+        val options = FirebaseRecyclerOptions.Builder<Anime>().setQuery(query){
+            val anime = it.getValue(Anime::class.java)
+            anime!!.id = it.key
+            anime
+        }.build()
 
         mFirebaseAdapter = object : FirebaseRecyclerAdapter<Anime,AnimeHolder>(options){
             private lateinit var mContext:Context
@@ -110,6 +114,7 @@ class AnimeFragment : Fragment() {
 
         mLayoutManager = GridLayoutManager(context,2)
         mBinding.rvAnime.apply {
+            setHasFixedSize(true)
             layoutManager = mLayoutManager
             adapter = mFirebaseAdapter
         }

@@ -11,6 +11,7 @@ import com.example.anijuan.databinding.ActivityAnimeDetailsBinding
 import com.example.anijuan.entitys.Anime
 import com.example.anijuan.entitys.Episode
 import com.example.anijuan.interfaces.AnimeDetailsAux
+import com.google.gson.Gson
 
 class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
 
@@ -40,14 +41,17 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
         addEpisodes(anime.episodes)
     }
 
-    private fun addEpisodes(episode:MutableList<Episode>){
+    private fun addEpisodes(episodes: Map<String, Episode>){
         val layoutManage = LinearLayoutManager(this)
-        //remove items null
-        episode.removeIf {
-                obj:Episode? -> obj == null
+        val listEpisodes = mutableListOf<Episode>()
+        for( episode in episodes){
+            episode.value.id = episode.key
+            listEpisodes.add(episode.value)
         }
-
-        val adapterEpisode = EpisodesAdapter(episode,this)
+        listEpisodes.sortBy {
+            it.episode
+        }
+        val adapterEpisode = EpisodesAdapter(listEpisodes,this)
 
         mBinding.rvDetailsAnimeEpisodes.apply {
             layoutManager = layoutManage

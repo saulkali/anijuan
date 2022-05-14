@@ -32,6 +32,11 @@
     <string name="sunday_title">Domingo</string>
     <string name="add_later_title">¿Guardar en ver mas tarde?</string>
     <string name="delete_later_title">Quitar de ver mas tarde</string>
-    <string name="search_title">Nombre de anime</string>
+    <string name="search_title">Busca Tu Anime</string>
     <string name="helper_title_search">Escriba al menos 3 caracteres</string>
+    <string name="settings_title">Configuraciones</string>
+    <string name="video_settings_title">Video</string>
+    <string name="server_settings_title">Servidor predeterminado.</string>
+    <string name="without_result_title">Sin resultados</string>
+    <string name="close_video_confirm">¿Cerrar Video?</string>
 </resources>

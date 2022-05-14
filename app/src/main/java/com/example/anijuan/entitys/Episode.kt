@@ -14,6 +14,6 @@ data class Episode(
     var date: String? = "",
     var episode: Double = 0.0,
     var urlVideo: String = "",
-    var listLike:Map<String,Boolean>? = null,
-    var anime: Anime? = null
+    var listLike:Map<String,Boolean> = mutableMapOf(),
+    var anime: Map<String,Anime> = mutableMapOf()
     ):Serializable

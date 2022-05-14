@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.anijuan.activitys.SearchAnimeActivity
+import com.example.anijuan.activitys.SettingsActivity
 import com.example.anijuan.databinding.ActivityMainBinding
 import com.example.anijuan.fragments.AnimeFragment
 import com.example.anijuan.fragments.HomeFragment
@@ -57,9 +58,18 @@ class MainActivity : AppCompatActivity() {
                     openSearchActivity()
                     true
                 }
+                R.id.btnActionSettings -> {
+                    openSettingsActivity()
+                    true
+                }
                 else -> true
             }
         }
+    }
+
+    private fun openSettingsActivity() {
+        val intent = Intent(this,SettingsActivity::class.java)
+        startActivity(intent)
     }
 
     private fun openSearchActivity(){

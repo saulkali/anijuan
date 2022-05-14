@@ -50,7 +50,7 @@ class PlayerActivity : AppCompatActivity() {
                     if(mBinding.wvVideo.canGoBack()) mBinding.wvVideo.goBack()
                     else {
                         MaterialAlertDialogBuilder(this)
-                            .setTitle(getString(R.string.close_app_confirm))
+                            .setTitle(getString(R.string.close_video_confirm))
                             .setPositiveButton(R.string.btn_confirm_dialog){ _, _ ->
                                 finish()
                             }.setNegativeButton(R.string.btn_cancel_dialog,null)

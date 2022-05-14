@@ -10,4 +10,6 @@
     <dimen name="cover_page_anime_details_width">150dp</dimen>
     <dimen name="circle_season_info">52dp</dimen>
     <dimen name="rv_height_issue">150dp</dimen>
+    <dimen name="counter_like_text_size">8sp</dimen>
+    <dimen name="padding_common_defult">16dp</dimen>
 </resources>

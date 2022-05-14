@@ -1,12 +1,12 @@
 package com.example.anijuan.activitys
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
-
+import com.example.anijuan.R
 import com.example.anijuan.adapters.AnimeAdapter
 import com.example.anijuan.databinding.ActivitySearchAnimeBinding
 import com.example.anijuan.entitys.Anime
@@ -43,6 +43,7 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
                 filterAnime(mListAnime)
             }else{
                 mBinding.tvHelper.visibility = View.VISIBLE
+                mBinding.tvHelper.text = getString(R.string.helper_title_search)
                 mBinding.rvSearchAnime.adapter = null
             }
         }
@@ -91,14 +92,19 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
         }
 
         listAnimeFind.removeIf { obj:Anime? -> obj == null  }
-
-        val manager = GridLayoutManager(this,2)
-        val animeAdapter = AnimeAdapter(listAnimeFind,this)
-        mBinding.rvSearchAnime.adapter = null
-        mBinding.rvSearchAnime.apply {
-            layoutManager = manager
-            adapter = animeAdapter
+        if(listAnimeFind.isEmpty() && mBinding.etSearchAnime.text.toString().length >= 3){
+            mBinding.tvHelper.visibility = View.VISIBLE
+            mBinding.tvHelper.text = getString(R.string.without_result_title)
+        }else{
+            val manager = GridLayoutManager(this,2)
+            val animeAdapter = AnimeAdapter(listAnimeFind,this)
+            mBinding.rvSearchAnime.adapter = null
+            mBinding.rvSearchAnime.apply {
+                layoutManager = manager
+                adapter = animeAdapter
+            }
         }
+
 
     }
 

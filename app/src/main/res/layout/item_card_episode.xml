@@ -16,9 +16,10 @@
             android:layout_height="@dimen/photo_episode_size_card"
             android:src="@mipmap/ic_launcher"
             android:layout_margin="@dimen/padding_common_min"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+
             />
 
 
@@ -28,7 +29,7 @@
             android:id="@+id/tvNameEpisode"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Eren se da en su perra madre"
+            tools:text="Eren se da en su perra madre"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:layout_marginHorizontal="@dimen/padding_common_min"
@@ -60,18 +61,123 @@
             app:layout_constraintTop_toBottomOf="@id/tvNumberEpisode"
             app:layout_constraintBottom_toBottomOf="@id/ivPhotoEpisode"
             />
-
+        <TextView
+            android:id="@+id/tvCounterLikes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/counter_like_text_size"
+            android:textAlignment="center"
+            app:layout_constraintStart_toStartOf="@id/cbEpisodeLike"
+            app:layout_constraintEnd_toEndOf="@id/cbEpisodeLike"
+            app:layout_constraintBottom_toTopOf="@id/cbEpisodeLike"
+            tools:text="0"
+            />
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/cbEpisodeLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/padding_common_min"
+            android:layout_marginEnd="@dimen/padding_common_min"
+            android:layout_marginBottom="@dimen/padding_common_min"
             android:button="@drawable/states_cb_favorite"
             android:buttonTint="@android:color/holo_red_dark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
 
             />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_common_min"
+            android:background="@color/fui_transparent"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbStart1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/padding_common_min"
+                android:layout_marginTop="@dimen/padding_common_min"
+                android:button="@drawable/states_cb_stars"
+                android:buttonTint="@color/yellow"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
 
+                app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+
+                />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbStart2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/padding_common_min"
+                android:layout_marginTop="@dimen/padding_common_min"
+                android:button="@drawable/states_cb_stars"
+                android:buttonTint="@color/yellow"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+
+                app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+
+                />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbStart3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/padding_common_min"
+                android:layout_marginTop="@dimen/padding_common_min"
+                android:button="@drawable/states_cb_stars"
+                android:buttonTint="@color/yellow"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+
+                app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+
+                />
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbStart4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/padding_common_min"
+                android:layout_marginTop="@dimen/padding_common_min"
+                android:button="@drawable/states_cb_stars"
+                android:buttonTint="@color/yellow"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+
+                app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+
+                />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbStart5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/padding_common_min"
+                android:layout_marginTop="@dimen/padding_common_min"
+                android:button="@drawable/states_cb_stars"
+                android:buttonTint="@color/yellow"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+
+                app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+                app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+                app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+                />
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

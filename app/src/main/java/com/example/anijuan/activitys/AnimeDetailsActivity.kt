@@ -44,13 +44,16 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
     private fun addEpisodes(episodes: Map<String, Episode>){
         val layoutManage = LinearLayoutManager(this)
         val listEpisodes = mutableListOf<Episode>()
+
         for( episode in episodes){
             episode.value.id = episode.key
             listEpisodes.add(episode.value)
         }
+
         listEpisodes.sortBy {
             it.episode
         }
+
         val adapterEpisode = EpisodesAdapter(listEpisodes,this)
 
         mBinding.rvDetailsAnimeEpisodes.apply {

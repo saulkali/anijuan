@@ -5,19 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activitys.SearchAnimeActivity">
-
+    <TextView
+        android:id="@+id/tvSearchTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_common_min"
+        android:text="@string/search_title"
+        android:textAppearance="?attr/textAppearanceHeadline4"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilSearchAnime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/search_title"
         android:layout_margin="@dimen/padding_common_min"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSearchTitle"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etSearchAnime"

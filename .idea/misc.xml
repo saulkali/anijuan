@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/states_cb_favorite.xml" value="0.174" />
+        <entry key="app/src/main/res/drawable/states_cb_stars.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_anime_details.xml" value="0.1743659420289855" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_player.xml" value="0.17028985507246377" />
         <entry key="app/src/main/res/layout/activity_search_anime.xml" value="0.264945652173913" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_anime.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
@@ -15,7 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_second.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/fragment_see_later.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/item_card_anime.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/item_card_episode.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_card_episode.xml" value="0.293843994140625" />
         <entry key="app/src/main/res/menu/menu_app_bar.xml" value="0.25" />
         <entry key="app/src/main/res/menu/menu_bottom_nav.xml" value="0.3098958333333333" />
       </map>

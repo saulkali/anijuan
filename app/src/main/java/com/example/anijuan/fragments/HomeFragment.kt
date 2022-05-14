@@ -16,6 +16,7 @@ import com.example.anijuan.R
 import com.example.anijuan.activitys.PlayerActivity
 import com.example.anijuan.databinding.FragmentHomeBinding
 import com.example.anijuan.databinding.ItemCardEpisodeBinding
+import com.example.anijuan.entitys.Anime
 import com.example.anijuan.entitys.Episode
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
 
     //global vars
     private var mUrlEpisodes = "episodes"
+    private val mUrlAnimes = "animes"
     private val mUrlSeeLater = "seelaters"
     //view binding
     private lateinit var mBinding:FragmentHomeBinding
@@ -86,10 +88,16 @@ class HomeFragment : Fragment() {
                     binding.tvNameEpisode.text = episode.name
                     binding.tvDescriptionEpisode.text = episode.description
                     binding.tvNumberEpisode.text = getString(R.string.episode_subtitle) + episode.episode.toString()
+                    binding.tvCounterLikes.text = episode.listLike.keys.size.toString()
+
+                    binding.cbEpisodeLike.isChecked = episode.listLike.containsKey(
+                        FirebaseAuth.getInstance().currentUser!!.uid
+                    )
 
                     Glide.with(mContext)
                         .load(episode.photoUrl)
                         .centerCrop()
+                        .circleCrop()
                         .into(binding.ivPhotoEpisode)
 
                     binding.root.setOnClickListener {
@@ -108,10 +116,13 @@ class HomeFragment : Fragment() {
                         saveEpisodeSeeLater(episode)
                         true
                     }
+                    binding.cbEpisodeLike.setOnCheckedChangeListener { _, checked ->
+                        setLikeEpisode(episode,checked)
+                    }
                 }
             }
         }
-        mLinearManager = LinearLayoutManager(context)
+        mLinearManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,true)
 
         mBinding.rvEpisodes.apply {
             setHasFixedSize(true)
@@ -147,9 +158,44 @@ class HomeFragment : Fragment() {
             .child(episode.id.toString())
             .setValue(episode)
     }
+    fun setLikeEpisodes(episode: Episode,checked: Boolean){
+        var anime:Anime? = null
+        for(ani in episode.anime){
+            anime = ani.value
+            anime.id = ani.key
+        }
+        anime?.let {
+            if(checked){
+                //episodes references
+                val databaseReferenceEpisodes = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
+                    .child(episode.id.toString()).child("likeList")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(checked)
+                //anime references
+                val databaseReference = FirebaseDatabase.getInstance().reference.child(mUrlAnimes)
+                    .child(anime.id.toString()).child(mUrlEpisodes).child(episode.id!!).child("listLike")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(checked)
+
+            }else {
+                //episodes references
+                val databaseReferenceEpisodes = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
+                    .child(episode.id.toString()).child("likeList")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(null)
+                //anime reference
+                val databaseReference = FirebaseDatabase.getInstance().reference.child(mUrlAnimes)
+                    .child(anime.id.toString()).child(mUrlEpisodes).child(episode.id!!).child("listLike")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(null)
+
+            }
+        }
+
+    }
 
     inner class EpisodeHolder(view: View):RecyclerView.ViewHolder(view){
         val binding = ItemCardEpisodeBinding.bind(view)
+
+        fun setLikeEpisode(episode: Episode,checked:Boolean){
+            setLikeEpisodes(episode,checked)
+        }
 
         fun saveEpisodeSeeLater(episode: Episode){
             saveEpisodeSeeLaterFirebase(episode)
@@ -159,5 +205,4 @@ class HomeFragment : Fragment() {
             startVideo(episode.urlVideo)
         }
     }
-
 }

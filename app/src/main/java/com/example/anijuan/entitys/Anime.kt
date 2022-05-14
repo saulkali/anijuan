@@ -12,6 +12,6 @@ data class Anime(
     var description:String? = "",
     var date:String? = "",
     var season:Double? = 0.0,
-    var listLike:Map<String,Boolean>? = null,
-    var episodes:Map<String,Episode> = mapOf()
+    var listLike:Map<String,Boolean> = mutableMapOf(),
+    var episodes:Map<String,Episode> = mutableMapOf()
     ):Serializable

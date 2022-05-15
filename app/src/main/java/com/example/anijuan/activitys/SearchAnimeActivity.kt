@@ -29,6 +29,13 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
 
         getAnimeLocal()
         setupEditText()
+        setupButtons()
+    }
+
+    private fun setupButtons() {
+        mBinding.ibBackPressed.setOnClickListener {
+            finish()
+        }
     }
 
     private fun setupEditText() {
@@ -95,6 +102,7 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
         if(listAnimeFind.isEmpty() && mBinding.etSearchAnime.text.toString().length >= 3){
             mBinding.tvHelper.visibility = View.VISIBLE
             mBinding.tvHelper.text = getString(R.string.without_result_title)
+            mBinding.rvSearchAnime.adapter = null
         }else{
             val manager = GridLayoutManager(this,2)
             val animeAdapter = AnimeAdapter(listAnimeFind,this)

@@ -7,7 +7,6 @@
     <string name="btn_action_anime_title">Animes</string>
     <string name="btn_action_issue_title">Emision</string>
     <string name="btn_action_see_latter_title">ver mas tarde</string>
-    <string name="episode_subtitle">"Capitulo: "</string>
     <string name="close_app_confirm">¿Desea salir de la aplicacion?</string>
     <string name="btn_confirm_dialog">Confirmar</string>
     <string name="btn_cancel_dialog">Cancelar</string>

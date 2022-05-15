@@ -84,15 +84,30 @@ class HomeFragment : Fragment() {
 
             override fun onBindViewHolder(holder: EpisodeHolder, position: Int, model: Episode) {
                 val episode = getItem(position)
+                var anime:Anime? = null
+                for (ani in episode.anime){
+                    anime = ani.value
+                }
                 with(holder){
                     binding.tvNameEpisode.text = episode.name
                     binding.tvDescriptionEpisode.text = episode.description
-                    binding.tvNumberEpisode.text = getString(R.string.episode_subtitle) + episode.episode.toString()
+                    binding.tvNumberEpisode.text = episode.episode.toString()
                     binding.tvCounterLikes.text = episode.listLike.keys.size.toString()
+
+                    anime?.let {
+                        binding.tvSubNameAnime.text = it.name
+                    }
 
                     binding.cbEpisodeLike.isChecked = episode.listLike.containsKey(
                         FirebaseAuth.getInstance().currentUser!!.uid
                     )
+
+                    val stars:Int? = episode.listStars.get(
+                        FirebaseAuth.getInstance().currentUser!!.uid
+                    )
+                    stars?.let {
+                        getStarsEpisode(it)
+                    }
 
                     Glide.with(mContext)
                         .load(episode.photoUrl)
@@ -119,9 +134,38 @@ class HomeFragment : Fragment() {
                     binding.cbEpisodeLike.setOnCheckedChangeListener { _, checked ->
                         setLikeEpisode(episode,checked)
                     }
-                }
-            }
-        }
+
+
+                    binding.cbStart1.setOnClickListener {
+                        val checked = binding.cbStart1.isChecked
+                        if (checked) setStarsEpisode(episode,1)
+                        else setStarsEpisode(episode,6)
+                    }
+                    binding.cbStart2.setOnClickListener {
+                        val checked = binding.cbStart2.isChecked
+                        if (checked) setStarsEpisode(episode,2)
+                        else setStarsEpisode(episode,6)
+                    }
+                    binding.cbStart3.setOnClickListener {
+                        val checked = binding.cbStart3.isChecked
+                        if (checked) setStarsEpisode(episode,3)
+                        else setStarsEpisode(episode,6)
+                    }
+                    binding.cbStart4.setOnClickListener {
+                        val checked = binding.cbStart4.isChecked
+                        if (checked) setStarsEpisode(episode,4)
+                        else setStarsEpisode(episode,6)
+                    }
+                    binding.cbStart5.setOnClickListener {
+                        val checked = binding.cbStart5.isChecked
+                        if (checked) setStarsEpisode(episode,5)
+                        else setStarsEpisode(episode,6)
+                    }
+
+
+                }//end with holder
+            }//end function
+        }//end mFirebaseAdapter
         mLinearManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,true)
 
         mBinding.rvEpisodes.apply {
@@ -168,26 +212,55 @@ class HomeFragment : Fragment() {
             if(checked){
                 //episodes references
                 val databaseReferenceEpisodes = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
-                    .child(episode.id.toString()).child("likeList")
+                    .child(episode.id.toString())
+                    .child("listLike")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(checked)
                 //anime references
                 val databaseReference = FirebaseDatabase.getInstance().reference.child(mUrlAnimes)
-                    .child(anime.id.toString()).child(mUrlEpisodes).child(episode.id!!).child("listLike")
+                    .child(anime.id.toString())
+                    .child(mUrlEpisodes).child(episode.id!!)
+                    .child("listLike")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(checked)
 
             }else {
+
                 //episodes references
                 val databaseReferenceEpisodes = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
-                    .child(episode.id.toString()).child("likeList")
+                    .child(episode.id.toString())
+                    .child("listLike")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(null)
+
                 //anime reference
                 val databaseReference = FirebaseDatabase.getInstance().reference.child(mUrlAnimes)
-                    .child(anime.id.toString()).child(mUrlEpisodes).child(episode.id!!).child("listLike")
+                    .child(anime.id.toString())
+                    .child(mUrlEpisodes)
+                    .child(episode.id!!)
+                    .child("listLike")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(null)
-
             }
         }
+    }
 
+    fun setStarsEpisodes(episode: Episode,stars: Int){
+        var anime:Anime? = null
+        for(ani in episode.anime){
+            anime = ani.value
+            anime.id = ani.key
+        }
+        anime?.let {
+            //episodes references
+            val databaseReferenceEpisodes = FirebaseDatabase.getInstance().reference.child(mUrlEpisodes)
+                .child(episode.id.toString())
+                .child("listStars")
+                .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(stars)
+
+            //anime references
+            val databaseReference = FirebaseDatabase.getInstance().reference.child(mUrlAnimes)
+                .child(anime.id.toString())
+                .child(mUrlEpisodes).child(episode.id!!)
+                .child("listStars")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid).setValue(stars)
+        }
     }
 
     inner class EpisodeHolder(view: View):RecyclerView.ViewHolder(view){
@@ -197,12 +270,64 @@ class HomeFragment : Fragment() {
             setLikeEpisodes(episode,checked)
         }
 
+        fun setStarsEpisode(episode: Episode,stars:Int){
+            setStarsEpisodes(episode,stars)
+            getStarsEpisode(stars)
+        }
+
         fun saveEpisodeSeeLater(episode: Episode){
             saveEpisodeSeeLaterFirebase(episode)
         }
 
         fun openVideoListener(episode: Episode){
             startVideo(episode.urlVideo)
+        }
+
+        fun getStarsEpisode(stars: Int){
+            when(stars){
+                1 -> {
+                    binding.cbStart1.isChecked = true
+                    binding.cbStart2.isChecked = false
+                    binding.cbStart3.isChecked = false
+                    binding.cbStart4.isChecked = false
+                    binding.cbStart5.isChecked = false
+                }
+                2 -> {
+                    binding.cbStart1.isChecked = true
+                    binding.cbStart2.isChecked = true
+                    binding.cbStart3.isChecked = false
+                    binding.cbStart4.isChecked = false
+                    binding.cbStart5.isChecked = false
+                }
+                3 -> {
+                    binding.cbStart1.isChecked = true
+                    binding.cbStart2.isChecked = true
+                    binding.cbStart3.isChecked = true
+                    binding.cbStart4.isChecked = false
+                    binding.cbStart5.isChecked = false
+                }
+                4 -> {
+                    binding.cbStart1.isChecked = true
+                    binding.cbStart2.isChecked = true
+                    binding.cbStart3.isChecked = true
+                    binding.cbStart4.isChecked = true
+                    binding.cbStart5.isChecked = false
+                }
+                5 -> {
+                    binding.cbStart1.isChecked = true
+                    binding.cbStart2.isChecked = true
+                    binding.cbStart3.isChecked = true
+                    binding.cbStart4.isChecked = true
+                    binding.cbStart5.isChecked = true
+                }
+                6 -> {
+                    binding.cbStart1.isChecked = false
+                    binding.cbStart2.isChecked = false
+                    binding.cbStart3.isChecked = false
+                    binding.cbStart4.isChecked = false
+                    binding.cbStart5.isChecked = false
+                }
+            }
         }
     }
 }

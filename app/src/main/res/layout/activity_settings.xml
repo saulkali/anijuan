@@ -42,6 +42,7 @@
                 android:layout_marginTop="@dimen/padding_common_min"
                 android:layout_marginHorizontal="@dimen/padding_common_min"
                 android:textAppearance="?attr/textAppearanceHeadline5"
+                android:textStyle="bold"
                 android:text="@string/video_settings_title"
 
                 app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
+
             <TextView
                 android:id="@+id/tvServerTitle"
                 android:layout_width="0dp"
@@ -76,6 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_common_min"
+                tools:listitem="@layout/support_simple_spinner_dropdown_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvServerTitle"

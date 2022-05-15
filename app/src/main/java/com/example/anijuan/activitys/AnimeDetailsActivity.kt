@@ -3,6 +3,7 @@ package com.example.anijuan.activitys
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -23,8 +24,25 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
         setContentView(mBinding.root)
         getAnimeDetails()
 
+
+        setupAppBar()
+
     }
 
+    private fun setupAppBar() {
+        setSupportActionBar(mBinding.tbDetailsAnime)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
+
+    }
     private fun getAnimeDetails() {
         val anime: Anime? = intent.getSerializableExtra("anime") as? Anime
         if(anime == null)
@@ -67,6 +85,7 @@ class AnimeDetailsActivity : AppCompatActivity(),AnimeDetailsAux {
         intent.putExtra("url",episode.urlVideo)
         startActivity(intent)
     }
+
 
 
 }

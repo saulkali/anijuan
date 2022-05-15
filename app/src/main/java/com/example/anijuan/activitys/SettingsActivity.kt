@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.ArrayList
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -25,14 +26,12 @@ class SettingsActivity : AppCompatActivity() {
 
         getSpinnerProviders()
 
-
         setupAppBar()
     }
 
-
     private fun getSpinnerProviders() {
         val providersReference = FirebaseDatabase.getInstance().reference.child(mUrlProviders)
-        val listProviders = mutableListOf<String>()
+        val listProviders = arrayListOf<String>()
 
         val eventListener = object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -51,7 +50,7 @@ class SettingsActivity : AppCompatActivity() {
         setSpinnerProviders(listProviders)
     }
 
-    fun setSpinnerProviders(listProviders:MutableList<String>){
+    fun setSpinnerProviders(listProviders:ArrayList<String>){
         val arrayAdapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,listProviders)
         mBinding.snIdServerVideo.adapter = arrayAdapter
     }

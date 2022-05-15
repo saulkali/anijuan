@@ -21,9 +21,22 @@
             app:layout_constraintTop_toTopOf="parent"
 
             />
-
-
-
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbStars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleY="1.5"
+            android:scaleX="1.5"
+            android:layout_marginStart="@dimen/padding_common_min"
+            android:layout_marginTop="@dimen/padding_common_min"
+            android:button="@drawable/ic_star"
+            android:buttonTint="@color/yellow"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintTop_toBottomOf="@id/ivPhotoEpisode"
+            />
 
         <TextView
             android:id="@+id/tvNameEpisode"
@@ -37,11 +50,44 @@
             app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
             app:layout_constraintEnd_toEndOf="parent"
             />
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/circle_episode_info"
+            android:layout_height="@dimen/circle_episode_info"
+            android:backgroundTint="@android:color/holo_purple"
+            app:cardCornerRadius="@dimen/circle_number_episode_info"
+            app:layout_constraintStart_toStartOf="@id/ivPhotoEpisode"
+            app:layout_constraintEnd_toEndOf="@id/ivPhotoEpisode"
+            app:layout_constraintBottom_toBottomOf="@id/ivPhotoEpisode"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:id="@+id/tvNumberEpisode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    tools:text="12"
+                    android:textAlignment="center"
+                    android:textAppearance="?attr/textAppearanceSubtitle1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
         <TextView
-            android:id="@+id/tvNumberEpisode"
+            android:id="@+id/tvSubNameAnime"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Capitulo 12"
+            tools:text="shingeki no kiojin el ataque de l"
+            android:maxLines="2"
+            android:textStyle="italic"
+            android:ellipsize="end"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:layout_constraintTop_toBottomOf="@id/tvNameEpisode"
@@ -58,7 +104,7 @@
             android:layout_marginHorizontal="@dimen/padding_common_min"
             app:layout_constraintStart_toEndOf="@id/ivPhotoEpisode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvNumberEpisode"
+            app:layout_constraintTop_toBottomOf="@id/tvSubNameAnime"
             app:layout_constraintBottom_toBottomOf="@id/ivPhotoEpisode"
             />
         <TextView
@@ -69,7 +115,7 @@
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="@id/cbEpisodeLike"
             app:layout_constraintEnd_toEndOf="@id/cbEpisodeLike"
-            app:layout_constraintBottom_toTopOf="@id/cbEpisodeLike"
+            app:layout_constraintTop_toBottomOf="@id/cbEpisodeLike"
             tools:text="0"
             />
         <com.google.android.material.checkbox.MaterialCheckBox
@@ -82,9 +128,8 @@
             android:buttonTint="@android:color/holo_red_dark"
             android:minWidth="0dp"
             android:minHeight="0dp"
-
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
 
             />
         <LinearLayout

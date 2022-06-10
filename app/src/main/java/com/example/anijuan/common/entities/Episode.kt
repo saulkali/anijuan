@@ -1,9 +1,8 @@
-package com.example.anijuan.entitys
+package com.example.anijuan.common.entities
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
 import java.io.Serializable
-import java.util.*
 
 @IgnoreExtraProperties
 data class Episode(

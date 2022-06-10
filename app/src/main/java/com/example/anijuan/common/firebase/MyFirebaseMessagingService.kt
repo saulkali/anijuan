@@ -1,4 +1,4 @@
-package com.example.anijuan.firebase
+package com.example.anijuan.common.firebase
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

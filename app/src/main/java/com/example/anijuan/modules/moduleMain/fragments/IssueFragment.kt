@@ -1,4 +1,4 @@
-package com.example.anijuan.fragments
+package com.example.anijuan.modules.moduleMain.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

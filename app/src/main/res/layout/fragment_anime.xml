@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.AnimeFragment">
+    tools:context=".modules.moduleMain.fragments.AnimeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAnime"

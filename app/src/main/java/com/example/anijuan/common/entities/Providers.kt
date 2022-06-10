@@ -1,4 +1,4 @@
-package com.example.anijuan.entitys
+package com.example.anijuan.common.entities
 
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties

@@ -1,4 +1,4 @@
-package com.example.anijuan.activitys
+package com.example.anijuan.modules.modulePlayer
 
 import android.os.Bundle
 import android.view.KeyEvent

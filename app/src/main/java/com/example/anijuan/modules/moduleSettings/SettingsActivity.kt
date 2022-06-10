@@ -1,14 +1,10 @@
-package com.example.anijuan.activitys
+package com.example.anijuan.modules.moduleSettings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Toast
-import com.example.anijuan.R
 import com.example.anijuan.databinding.ActivitySettingsBinding
-import com.example.anijuan.entitys.Providers
+import com.example.anijuan.common.entities.Providers
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

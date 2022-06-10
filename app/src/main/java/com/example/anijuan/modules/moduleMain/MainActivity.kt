@@ -1,4 +1,4 @@
-package com.example.anijuan
+package com.example.anijuan.modules.moduleMain
 
 import android.app.Activity
 import android.content.Intent
@@ -9,13 +9,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.anijuan.activitys.SearchAnimeActivity
-import com.example.anijuan.activitys.SettingsActivity
+import com.example.anijuan.R
+import com.example.anijuan.modules.moduleSearchAnime.SearchAnimeActivity
+import com.example.anijuan.modules.moduleSettings.SettingsActivity
 import com.example.anijuan.databinding.ActivityMainBinding
-import com.example.anijuan.fragments.AnimeFragment
-import com.example.anijuan.fragments.HomeFragment
-import com.example.anijuan.fragments.IssueFragment
-import com.example.anijuan.fragments.SeeLaterFragment
+import com.example.anijuan.modules.moduleMain.fragments.AnimeFragment
+import com.example.anijuan.modules.moduleMain.fragments.HomeFragment
+import com.example.anijuan.modules.moduleMain.fragments.IssueFragment
+import com.example.anijuan.modules.moduleMain.fragments.SeeLaterFragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 
@@ -68,12 +69,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openSettingsActivity() {
-        val intent = Intent(this,SettingsActivity::class.java)
+        val intent = Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
 
     private fun openSearchActivity(){
-        val intent = Intent(this,SearchAnimeActivity::class.java)
+        val intent = Intent(this, SearchAnimeActivity::class.java)
         startActivity(intent)
     }
 
@@ -81,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_app_bar,menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     private fun setupBottomNav() {
         val homeFragment = HomeFragment()
         val animeFragment = AnimeFragment()
@@ -133,15 +135,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     val auth = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-        if(it.resultCode == Activity.RESULT_OK){
+        if(it.resultCode != Activity.RESULT_OK){
+            finish()
+        }else{
             Toast.makeText(this, getString(R.string.login_welcome_title), Toast.LENGTH_SHORT).show()
             setupBottomNav()
         }
     }
 
+
     private fun setupAuth() {
         mFireBaseAuth = FirebaseAuth.getInstance()
-
         mAuthListener = FirebaseAuth.AuthStateListener {
             val user = it.currentUser
             if (user == null) {

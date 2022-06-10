@@ -1,4 +1,4 @@
-package com.example.anijuan.fragments
+package com.example.anijuan.modules.moduleMain.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anijuan.R
-import com.example.anijuan.activitys.AnimeDetailsActivity
-import com.example.anijuan.activitys.PlayerActivity
+import com.example.anijuan.modules.moduleAnimeDetails.AnimeDetailsActivity
+import com.example.anijuan.modules.modulePlayer.PlayerActivity
 import com.example.anijuan.databinding.FragmentSeeLaterBinding
 import com.example.anijuan.databinding.ItemCardAnimeBinding
 import com.example.anijuan.databinding.ItemCardEpisodeBinding
-import com.example.anijuan.entitys.Anime
-import com.example.anijuan.entitys.Episode
+import com.example.anijuan.common.entities.Anime
+import com.example.anijuan.common.entities.Episode
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -138,7 +138,7 @@ class SeeLaterFragment : Fragment() {
         mFirebaseAdapterEpisode.stopListening()
     }
     private fun openPlayerActivity(episode: Episode){
-        val intent = Intent(context,PlayerActivity::class.java)
+        val intent = Intent(context, PlayerActivity::class.java)
         intent.putExtra("url",episode.urlVideo)
         startActivity(intent)
 

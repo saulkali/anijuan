@@ -1,4 +1,4 @@
-package com.example.anijuan.fragments
+package com.example.anijuan.modules.moduleMain.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anijuan.R
-import com.example.anijuan.activitys.AnimeDetailsActivity
+import com.example.anijuan.modules.moduleAnimeDetails.AnimeDetailsActivity
 import com.example.anijuan.databinding.FragmentAnimeBinding
 import com.example.anijuan.databinding.ItemCardAnimeBinding
-import com.example.anijuan.entitys.Anime
+import com.example.anijuan.common.entities.Anime
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -128,7 +128,7 @@ class AnimeFragment : Fragment() {
     }
 
     private fun openDetailsAnime(anime: Anime){
-        val intent = Intent(context,AnimeDetailsActivity::class.java)
+        val intent = Intent(context, AnimeDetailsActivity::class.java)
         intent.putExtra("anime",anime)
         startActivity(intent)
     }

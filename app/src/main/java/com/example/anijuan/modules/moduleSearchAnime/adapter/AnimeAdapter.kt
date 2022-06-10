@@ -1,4 +1,4 @@
-package com.example.anijuan.adapters
+package com.example.anijuan.modules.moduleSearchAnime.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.anijuan.R
 import com.example.anijuan.databinding.ItemCardAnimeBinding
-import com.example.anijuan.entitys.Anime
-import com.example.anijuan.interfaces.SearchAnimeAux
+import com.example.anijuan.common.entities.Anime
+import com.example.anijuan.modules.moduleSearchAnime.interfaces.SearchAnimeAux
 
-class AnimeAdapter(val animes:MutableList<Anime>, val listener:SearchAnimeAux):RecyclerView.Adapter<AnimeAdapter.AnimeHolder> () {
+class AnimeAdapter(val animes:MutableList<Anime>, val listener: SearchAnimeAux):RecyclerView.Adapter<AnimeAdapter.AnimeHolder> () {
 
     private lateinit var mContext:Context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeHolder {

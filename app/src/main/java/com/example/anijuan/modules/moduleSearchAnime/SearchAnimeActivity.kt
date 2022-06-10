@@ -1,4 +1,4 @@
-package com.example.anijuan.activitys
+package com.example.anijuan.modules.moduleSearchAnime
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,14 +7,15 @@ import android.view.View
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anijuan.R
-import com.example.anijuan.adapters.AnimeAdapter
 import com.example.anijuan.databinding.ActivitySearchAnimeBinding
-import com.example.anijuan.entitys.Anime
-import com.example.anijuan.interfaces.SearchAnimeAux
+import com.example.anijuan.common.entities.Anime
+import com.example.anijuan.modules.moduleAnimeDetails.AnimeDetailsActivity
+import com.example.anijuan.modules.moduleSearchAnime.adapter.AnimeAdapter
+import com.example.anijuan.modules.moduleSearchAnime.interfaces.SearchAnimeAux
 import com.google.firebase.database.*
 
 
-class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
+class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
 
     private lateinit var mBinding: ActivitySearchAnimeBinding
 
@@ -124,7 +125,7 @@ class SearchAnimeActivity : AppCompatActivity(),SearchAnimeAux {
 
     override fun openAnimeDetails(anime: Anime) {
         finish()
-        val intent = Intent(applicationContext,AnimeDetailsActivity::class.java)
+        val intent = Intent(applicationContext, AnimeDetailsActivity::class.java)
         intent.putExtra("anime",anime)
         startActivity(intent)
     }

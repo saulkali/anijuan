@@ -1,4 +1,4 @@
-package com.example.anijuan.fragments
+package com.example.anijuan.modules.moduleMain.fragments
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,11 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anijuan.R
-import com.example.anijuan.activitys.PlayerActivity
+import com.example.anijuan.modules.modulePlayer.PlayerActivity
 import com.example.anijuan.databinding.FragmentHomeBinding
 import com.example.anijuan.databinding.ItemCardEpisodeBinding
-import com.example.anijuan.entitys.Anime
-import com.example.anijuan.entitys.Episode
+import com.example.anijuan.common.entities.Anime
+import com.example.anijuan.common.entities.Episode
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -32,6 +32,7 @@ class HomeFragment : Fragment() {
     private var mUrlEpisodes = "episodes"
     private val mUrlAnimes = "animes"
     private val mUrlSeeLater = "seelaters"
+
     //view binding
     private lateinit var mBinding:FragmentHomeBinding
 
@@ -135,7 +136,6 @@ class HomeFragment : Fragment() {
                         setLikeEpisode(episode,checked)
                     }
 
-
                     binding.cbStart1.setOnClickListener {
                         val checked = binding.cbStart1.isChecked
                         if (checked) setStarsEpisode(episode,1)
@@ -187,7 +187,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun startVideo(url:String){
-        val intent = Intent(context,PlayerActivity::class.java)
+        val intent = Intent(context, PlayerActivity::class.java)
         intent.putExtra("url",url)
         startActivity(intent)
 

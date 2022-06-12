@@ -1,7 +1,7 @@
 package com.example.anijuan.modules.moduleSettings.model
 
 import com.example.anijuan.common.entities.Providers
-import com.example.anijuan.common.settingsCustom.SettingsCustom
+import com.example.anijuan.common.firebase.FirebaseReferenceHelper
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -15,7 +15,7 @@ class SettingsInteractor {
     fun getProviders(callback:(ArrayList<String>) -> Unit){
         doAsync {
             val providersReference = FirebaseDatabase.getInstance().reference
-                .child(SettingsCustom.referenceProviders)
+                .child(FirebaseReferenceHelper.referenceProviders)
             val listProviders = arrayListOf<String>()
 
             val eventListener = object : ValueEventListener {

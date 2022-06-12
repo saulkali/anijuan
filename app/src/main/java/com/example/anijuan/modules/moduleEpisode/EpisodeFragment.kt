@@ -1,4 +1,4 @@
-package com.example.anijuan.modules.moduleMain.fragments
+package com.example.anijuan.modules.moduleEpisode
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -26,7 +26,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 
 
-class HomeFragment : Fragment() {
+class EpisodeFragment : Fragment() {
 
     //global vars
     private var mUrlEpisodes = "episodes"
@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
     private lateinit var mBinding:FragmentHomeBinding
 
     //firebase
-    private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Episode,EpisodeHolder>
+    private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Episode, EpisodeHolder>
     private lateinit var mLinearManager: LinearLayoutManager
 
     override fun onCreateView(
@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
                 episode
             }.build()
 
-        mFirebaseAdapter = object: FirebaseRecyclerAdapter<Episode,EpisodeHolder>(options){
+        mFirebaseAdapter = object: FirebaseRecyclerAdapter<Episode, EpisodeHolder>(options){
             private lateinit var mContext:Context
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpisodeHolder {

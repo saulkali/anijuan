@@ -13,10 +13,10 @@ import com.example.anijuan.R
 import com.example.anijuan.modules.moduleSearchAnime.SearchAnimeActivity
 import com.example.anijuan.modules.moduleSettings.SettingsActivity
 import com.example.anijuan.databinding.ActivityMainBinding
-import com.example.anijuan.modules.moduleMain.fragments.AnimeFragment
-import com.example.anijuan.modules.moduleMain.fragments.HomeFragment
-import com.example.anijuan.modules.moduleMain.fragments.IssueFragment
-import com.example.anijuan.modules.moduleMain.fragments.SeeLaterFragment
+import com.example.anijuan.modules.moduleAnime.AnimeFragment
+import com.example.anijuan.modules.moduleEpisode.EpisodeFragment
+import com.example.anijuan.modules.moduleIssue.IssueFragment
+import com.example.anijuan.modules.moduleSeeLater.SeeLaterFragment
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNav() {
-        val homeFragment = HomeFragment()
+        val homeFragment = EpisodeFragment()
         val animeFragment = AnimeFragment()
         val seeLaterFragment = SeeLaterFragment()
         val issueFragment = IssueFragment()
@@ -95,25 +95,25 @@ class MainActivity : AppCompatActivity() {
 
         //home fragment add
         mFragmentManager.beginTransaction()
-            .add(R.id.frameLayoutManager,mActiveFragment,HomeFragment::class.java.name)
+            .add(R.id.frameLayoutManager,mActiveFragment, EpisodeFragment::class.java.name)
             .show(mActiveFragment)
             .commit()
 
         //anime fragment add
         mFragmentManager.beginTransaction()
-            .add(R.id.frameLayoutManager,animeFragment,AnimeFragment::class.java.name)
+            .add(R.id.frameLayoutManager,animeFragment, AnimeFragment::class.java.name)
             .hide(animeFragment)
             .commit()
 
         //see later fragment add
         mFragmentManager.beginTransaction()
-            .add(R.id.frameLayoutManager,seeLaterFragment,SeeLaterFragment::class.java.name)
+            .add(R.id.frameLayoutManager,seeLaterFragment, SeeLaterFragment::class.java.name)
             .hide(seeLaterFragment)
             .commit()
 
         // issue fragment add
         mFragmentManager.beginTransaction()
-            .add(R.id.frameLayoutManager,issueFragment,IssueFragment::class.java.name)
+            .add(R.id.frameLayoutManager,issueFragment, IssueFragment::class.java.name)
             .hide(issueFragment)
             .commit()
 

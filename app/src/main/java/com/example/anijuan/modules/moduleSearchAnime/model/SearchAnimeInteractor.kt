@@ -1,7 +1,7 @@
 package com.example.anijuan.modules.moduleSearchAnime.model
 
 import com.example.anijuan.common.entities.Anime
-import com.example.anijuan.common.settingsCustom.SettingsCustom
+import com.example.anijuan.common.firebase.FirebaseReferenceHelper
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -15,7 +15,7 @@ class SearchAnimeInteractor {
         doAsync {
             val query = FirebaseDatabase.getInstance()
                 .reference
-                .child(SettingsCustom.referenceAnimes)
+                .child(FirebaseReferenceHelper.referenceAnimes)
             val listAnime = mutableListOf<Anime>()
 
             query.addListenerForSingleValueEvent(object : ValueEventListener {

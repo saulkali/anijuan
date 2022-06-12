@@ -1,4 +1,4 @@
-package com.example.anijuan.modules.moduleMain.fragments
+package com.example.anijuan.modules.moduleSeeLater
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -35,8 +35,8 @@ class SeeLaterFragment : Fragment() {
     private val mUrlAnime = "animes"
     private val mUrlEpisodes = "episodes"
 
-    private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Anime,AnimeHolder>
-    private lateinit var mFirebaseAdapterEpisode:FirebaseRecyclerAdapter<Episode,EpisodeHolder>
+    private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Anime, AnimeHolder>
+    private lateinit var mFirebaseAdapterEpisode:FirebaseRecyclerAdapter<Episode, EpisodeHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +67,7 @@ class SeeLaterFragment : Fragment() {
         }.build()
 
 
-        mFirebaseAdapterEpisode = object : FirebaseRecyclerAdapter<Episode,EpisodeHolder>(options){
+        mFirebaseAdapterEpisode = object : FirebaseRecyclerAdapter<Episode, EpisodeHolder>(options){
 
             private lateinit var mContext: Context
 
@@ -159,7 +159,7 @@ class SeeLaterFragment : Fragment() {
             anime
         }.build()
 
-        mFirebaseAdapter = object : FirebaseRecyclerAdapter<Anime,AnimeHolder>(options){
+        mFirebaseAdapter = object : FirebaseRecyclerAdapter<Anime, AnimeHolder>(options){
             private lateinit var mContext:Context
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeHolder {
                 mContext = parent.context

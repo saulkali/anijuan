@@ -8,18 +8,19 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.anijuan.R
-import com.example.anijuan.adapters.EpisodesAdapter
 import com.example.anijuan.databinding.ActivityAnimeDetailsBinding
 import com.example.anijuan.common.entities.Anime
 import com.example.anijuan.common.entities.Episode
 import com.example.anijuan.common.settingsCustom.SettingsCustom
 import com.example.anijuan.databinding.ItemCardEpisodeBinding
 import com.example.anijuan.modules.moduleAnimeDetails.interfaces.AnimeDetailsAux
+import com.example.anijuan.modules.moduleAnimeDetails.viewModel.AnimeDetailsViewModel
 import com.example.anijuan.modules.modulePlayer.PlayerActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -33,6 +34,7 @@ class AnimeDetailsActivity : AppCompatActivity(), AnimeDetailsAux {
     private lateinit var mAnime:Anime
     private lateinit var mFirebaseAdapter:FirebaseRecyclerAdapter<Episode,AnimeDetailsHolder>
 
+    private lateinit var mAnimeDetailsViewModel:AnimeDetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +47,13 @@ class AnimeDetailsActivity : AppCompatActivity(), AnimeDetailsAux {
 
         setupFirebase()
 
+        setupViewModel()
+
     }
 
+    private fun setupViewModel() {
+        mAnimeDetailsViewModel = ViewModelProvider(this)[AnimeDetailsViewModel::class.java]
+    }
 
 
     private fun setupAppBar() {
@@ -135,9 +142,9 @@ class AnimeDetailsActivity : AppCompatActivity(), AnimeDetailsAux {
                     binding.tvDescriptionEpisode.text = episode.description
                     binding.tvNumberEpisode.text = episode.episode.toString()
 
-                    val stars:Int? = episode.listStars.get(
-                        FirebaseAuth.getInstance().currentUser!!.uid
-                    )
+                    val stars:Int? = episode.listStars[
+                            FirebaseAuth.getInstance().currentUser!!.uid
+                    ]
                     stars?.let {
                         getStarsEpisode(it)
                     }

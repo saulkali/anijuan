@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anijuan.R
 import com.example.anijuan.databinding.ActivitySearchAnimeBinding
@@ -12,6 +13,7 @@ import com.example.anijuan.common.entities.Anime
 import com.example.anijuan.modules.moduleAnimeDetails.AnimeDetailsActivity
 import com.example.anijuan.modules.moduleSearchAnime.adapter.AnimeAdapter
 import com.example.anijuan.modules.moduleSearchAnime.interfaces.SearchAnimeAux
+import com.example.anijuan.modules.moduleSearchAnime.viewModel.SearchAnimeViewModel
 import com.google.firebase.database.*
 
 
@@ -19,7 +21,7 @@ class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
 
     private lateinit var mBinding: ActivitySearchAnimeBinding
 
-    private val mListAnime:MutableList<Anime> = mutableListOf()
+    private lateinit var mSearchAnimeViewModel:SearchAnimeViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +30,16 @@ class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
         setContentView(mBinding.root)
 
 
-        getAnimeLocal()
         setupEditText()
         setupButtons()
+        setupViewModel()
+    }
+
+    private fun setupViewModel() {
+        mSearchAnimeViewModel = ViewModelProvider(this)[
+                SearchAnimeViewModel::class.java
+        ]
+
     }
 
     private fun setupButtons() {
@@ -43,44 +52,22 @@ class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
         mBinding.tilSearchAnime.requestFocus()
         mBinding.etSearchAnime.setOnFocusChangeListener { view, focus ->
             if (!focus)
-                filterAnime(mListAnime)
+                mSearchAnimeViewModel.getListAnime().value?.let { listAnime ->
+                    filterAnime(listAnime)
+                }
         }
         mBinding.etSearchAnime.addTextChangedListener{
             if(it.toString().length >= 3){
                 mBinding.tvHelper.visibility = View.GONE
-                filterAnime(mListAnime)
+                mSearchAnimeViewModel.getListAnime().value?.let { listAnime ->
+                    filterAnime(listAnime)
+                }
             }else{
                 mBinding.tvHelper.visibility = View.VISIBLE
                 mBinding.tvHelper.text = getString(R.string.helper_title_search)
                 mBinding.rvSearchAnime.adapter = null
             }
         }
-    }
-    private fun getAnimeLocal() {
-        val query = FirebaseDatabase.getInstance()
-            .reference
-            .child("animes")
-
-        query.addListenerForSingleValueEvent(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-
-                    for (anime in snapshot.children){
-                        val encodeAnime:Anime? = anime.getValue(Anime::class.java)
-
-                        if (encodeAnime != null)
-                            mListAnime.add(encodeAnime)
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-        })
-
-
     }
 
     private fun filterAnime(listAnime:MutableList<Anime>){
@@ -113,15 +100,7 @@ class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
                 adapter = animeAdapter
             }
         }
-
-
     }
-
-    override fun onStart() {
-        super.onStart()
-        filterAnime(mListAnime)
-    }
-
 
     override fun openAnimeDetails(anime: Anime) {
         finish()

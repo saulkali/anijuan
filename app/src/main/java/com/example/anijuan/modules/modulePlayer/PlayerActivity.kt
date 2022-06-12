@@ -7,29 +7,42 @@ import android.view.Window
 import android.view.WindowManager
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.anijuan.R
 import com.example.anijuan.databinding.ActivityPlayerBinding
+import com.example.anijuan.modules.modulePlayer.viewModel.PlayerViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class PlayerActivity : AppCompatActivity() {
 
     private lateinit var mBinding:ActivityPlayerBinding
+    private lateinit var mPlayerViewModel:PlayerViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivityPlayerBinding.inflate(layoutInflater)
-
-
         setupActivity()
         setContentView(mBinding.root)
 
+
+        setupViewModel()
         getUrl()
 
     }
 
+    private fun setupViewModel() {
+        mPlayerViewModel = ViewModelProvider(this)[
+                PlayerViewModel::class.java
+        ]
+        mPlayerViewModel.getUrl().observe(this){ url ->
+            openVideo(url)
+        }
+    }
+
     private fun getUrl() {
         val url = intent.extras?.getString("url").toString()
-        openVideo(url)
+        mPlayerViewModel.setUrl(url)
     }
 
     private fun setupActivity() {

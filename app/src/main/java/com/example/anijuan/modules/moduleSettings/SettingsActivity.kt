@@ -3,47 +3,33 @@ package com.example.anijuan.modules.moduleSettings
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.lifecycle.ViewModelProvider
 import com.example.anijuan.databinding.ActivitySettingsBinding
-import com.example.anijuan.common.entities.Providers
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.anijuan.modules.moduleSettings.viewModel.SettingsViewModel
 import java.util.ArrayList
 
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var mBinding:ActivitySettingsBinding
-    private val mUrlProviders = "providers"
+    private lateinit var mSettingsViewModel:SettingsViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-        getSpinnerProviders()
-
         setupAppBar()
+
+        setupViewModel()
     }
 
-    private fun getSpinnerProviders() {
-        val providersReference = FirebaseDatabase.getInstance().reference.child(mUrlProviders)
-        val listProviders = arrayListOf<String>()
-
-        val eventListener = object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(provider in snapshot.children){
-                    provider.getValue(Providers::class.java)?.let {
-                        listProviders.add(it.name)
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
+    private fun setupViewModel() {
+        mSettingsViewModel = ViewModelProvider(this)[
+                SettingsViewModel::class.java
+        ]
+        mSettingsViewModel.getListProviders().observe(this){ listProviders ->
+            setSpinnerProviders(listProviders)
         }
-        providersReference.addListenerForSingleValueEvent(eventListener)
-        setSpinnerProviders(listProviders)
     }
 
     fun setSpinnerProviders(listProviders:ArrayList<String>){

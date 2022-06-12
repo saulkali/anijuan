@@ -15,6 +15,7 @@ import com.example.anijuan.modules.moduleSearchAnime.interfaces.SearchAnimeAux
 class AnimeAdapter(val animes:MutableList<Anime>, val listener: SearchAnimeAux):RecyclerView.Adapter<AnimeAdapter.AnimeHolder> () {
 
     private lateinit var mContext:Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimeHolder {
         mContext = parent.context
         val view = LayoutInflater.from(mContext).inflate(R.layout.item_card_anime,parent,false)

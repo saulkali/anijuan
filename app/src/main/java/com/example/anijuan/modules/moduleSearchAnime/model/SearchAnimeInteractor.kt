@@ -12,33 +12,30 @@ import org.jetbrains.anko.uiThread
 class SearchAnimeInteractor {
 
     fun getAnimes(callback:(MutableList<Anime>)->Unit){
-        doAsync {
-            val query = FirebaseDatabase.getInstance()
-                .reference
-                .child(FirebaseReferenceHelper.referenceAnimes)
-            val listAnime = mutableListOf<Anime>()
+        val query = FirebaseDatabase.getInstance()
+            .reference
+            .child(FirebaseReferenceHelper.referenceAnimes)
+        val listAnime = mutableListOf<Anime>()
 
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    if(snapshot.exists()){
+        query.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
 
-                        for (anime in snapshot.children){
-                            val encodeAnime:Anime? = anime.getValue(Anime::class.java)
-
-                            if (encodeAnime != null)
-                                listAnime.add(encodeAnime)
-                        }
+                    for (anime in snapshot.children){
+                        val encodeAnime:Anime? = anime.getValue(Anime::class.java)
+                        encodeAnime?.id = anime.key
+                        if (encodeAnime != null)
+                            listAnime.add(encodeAnime)
                     }
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-            })
-            uiThread {
-                callback(listAnime)
             }
-        }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+        callback(listAnime)
     }
 }

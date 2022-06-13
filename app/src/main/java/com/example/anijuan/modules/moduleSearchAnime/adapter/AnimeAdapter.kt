@@ -1,6 +1,7 @@
 package com.example.anijuan.modules.moduleSearchAnime.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.anijuan.R
 import com.example.anijuan.databinding.ItemCardAnimeBinding
 import com.example.anijuan.common.entities.Anime
+import com.example.anijuan.modules.moduleAnimeDetails.AnimeDetailsActivity
 import com.example.anijuan.modules.moduleSearchAnime.interfaces.SearchAnimeAux
 
 class AnimeAdapter(val animes:MutableList<Anime>, val listener: SearchAnimeAux):RecyclerView.Adapter<AnimeAdapter.AnimeHolder> () {
@@ -38,7 +40,10 @@ class AnimeAdapter(val animes:MutableList<Anime>, val listener: SearchAnimeAux):
                 .into(binding.ivPhotoAnime)
 
             binding.root.setOnClickListener {
-                openAnimeDetails(anime)
+                val intent = Intent(mContext, AnimeDetailsActivity::class.java)
+                intent.putExtra("anime",anime)
+                mContext.startActivity(intent)
+                listener.finishActivity()
             }
 
         }
@@ -49,10 +54,6 @@ class AnimeAdapter(val animes:MutableList<Anime>, val listener: SearchAnimeAux):
 
     inner class AnimeHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemCardAnimeBinding.bind(view)
-
-        fun openAnimeDetails(anime:Anime){
-            listener.openAnimeDetails(anime)
-        }
     }
 
 }

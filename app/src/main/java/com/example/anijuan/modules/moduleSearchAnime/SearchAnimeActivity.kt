@@ -102,11 +102,8 @@ class SearchAnimeActivity : AppCompatActivity(), SearchAnimeAux {
         }
     }
 
-    override fun openAnimeDetails(anime: Anime) {
+    override fun finishActivity() {
         finish()
-        val intent = Intent(applicationContext, AnimeDetailsActivity::class.java)
-        intent.putExtra("anime",anime)
-        startActivity(intent)
     }
 
 

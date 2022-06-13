@@ -19,7 +19,6 @@ class AnimeFragment : Fragment() {
 
     private lateinit var mAnimeViewModel:AnimeViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

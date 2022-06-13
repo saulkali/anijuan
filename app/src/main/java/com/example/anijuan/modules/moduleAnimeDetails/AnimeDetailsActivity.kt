@@ -29,7 +29,6 @@ class AnimeDetailsActivity : AppCompatActivity() {
         setupViewModel()
         getAnimeDetails()
         setupAppBar()
-        setupRecycleView()
 
     }
 
@@ -43,6 +42,9 @@ class AnimeDetailsActivity : AppCompatActivity() {
 
     private fun setupViewModel() {
         mAnimeDetailsViewModel = ViewModelProvider(this)[AnimeDetailsViewModel::class.java]
+        mAnimeDetailsViewModel.getFirebaseAdapter().observe(this){
+            setupRecycleView()
+        }
     }
 
 

@@ -14,7 +14,7 @@ en este modulo esta enfocado el guardar las configuraciones de nuestra app, por 
   </a>
 </div>
 
-#moduleMain
+# moduleMain
 este modulo es nuestra activiadad principal donde aloja 4 fragmento, el fragmento donde se muestran los animes publciados, los ultimos captitulos publicados, y un pequeno sistema de guardado de animes para ver mas tarde
 
 
@@ -42,7 +42,7 @@ este modulo, esta enfocado en la busqueda del anime por nombre
   </a>
 </div>
 
-#modulePlayer
+# modulePlayer
 este modulo se encarga de reproducir los videos cargados en los servidores
 
 <div align="center">
@@ -59,7 +59,7 @@ este modulo aun se encuentra en desarrollo es el encargado de mostrar los animes
   </a>
 </div>
 
-#moduleEpisode
+# moduleEpisode
 este modulo se encarga de mostrar los ultimos capitulos publicados
 
 <div align="center">
@@ -68,7 +68,7 @@ este modulo se encarga de mostrar los ultimos capitulos publicados
   </a>
 </div>
 
-#moduleAnimeDetails
+# moduleAnimeDetails
 este modulo se encarga de mostrar informacion sobre el anime tanto sus capitulos
 
 <div align="center">
@@ -77,7 +77,7 @@ este modulo se encarga de mostrar informacion sobre el anime tanto sus capitulos
   </a>
 </div>
 
-#moduleAnime
+# moduleAnime
 este modulo se encarga de mostrar los ultimos animes publicados
 
 <div align="center">

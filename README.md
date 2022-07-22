@@ -10,7 +10,7 @@ en este modulo esta enfocado el guardar las configuraciones de nuestra app, por 
 
 <div align="center">
   <a>
-    <img height="400" width= "400" src="screenshoots/moduleSettigns.png" alt="Logo" width="80" height="80">
+    <img height="400" width= "400" src="screenshoots/moduleSettings.png" alt="Logo" width="80" height="80">
   </a>
 </div>
 

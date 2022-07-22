@@ -10,33 +10,81 @@ en este modulo esta enfocado el guardar las configuraciones de nuestra app, por 
 
 <div align="center">
   <a>
-    <img height="400" width= "400" src="screenshoots/moduleSettings.png" alt="Logo" width="80" height="80">
+    <img height="600" width= "400" src="screenshoots/moduleSettings.png" alt="Logo" width="80" height="80">
   </a>
 </div>
 
 #moduleMain
 este modulo es nuestra activiadad principal donde aloja 4 fragmento, el fragmento donde se muestran los animes publciados, los ultimos captitulos publicados, y un pequeno sistema de guardado de animes para ver mas tarde
 
+
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleEpisodes.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
 # moduleSeeLater
 este modulo esta enfocado para que el usuario pueda guardar, tanto capitulos como animes completos para ver mas tarde
+
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleSeeLater.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 # moduleSearchAnime
 este modulo, esta enfocado en la busqueda del anime por nombre
 
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleSearchAnime.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
 #modulePlayer
 este modulo se encarga de reproducir los videos cargados en los servidores
 
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/modulePlayer.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 # moduleIssue
 este modulo aun se encuentra en desarrollo es el encargado de mostrar los animes en emision, y el dia en que se publica un episodio
+
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleIssue.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 #moduleEpisode
 este modulo se encarga de mostrar los ultimos capitulos publicados
 
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleEpisodes.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
 #moduleAnimeDetails
 este modulo se encarga de mostrar informacion sobre el anime tanto sus capitulos
 
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleAnimeDetails.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
 #moduleAnime
 este modulo se encarga de mostrar los ultimos animes publicados
+
+<div align="center">
+  <a>
+    <img height="600" width= "400" src="screenshoots/moduleAnimes.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 ## common
 esta carpeta nos sirve para guardar scripts que cumplan una funcion en especifico, como intergrar las entidades, la base de datos, entre otros

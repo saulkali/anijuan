@@ -7,7 +7,12 @@ app android en kotlin, aplicacion enfocada, al entretenimineto del anime, donde 
 # moduleSettigns
 en este modulo esta enfocado el guardar las configuraciones de nuestra app, por ejemplo elegir el tipo de reproductor, o el servidor de los videos
 
-![ModuleSettings](/screenshoots/moduleSettigns.png)
+
+<div align="center">
+  <a>
+    <img height="400" width= "400" src="screenshoots/moduleSettigns.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 #moduleMain
 este modulo es nuestra activiadad principal donde aloja 4 fragmento, el fragmento donde se muestran los animes publciados, los ultimos captitulos publicados, y un pequeno sistema de guardado de animes para ver mas tarde

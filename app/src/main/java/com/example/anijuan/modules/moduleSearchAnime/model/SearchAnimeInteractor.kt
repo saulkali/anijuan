@@ -20,7 +20,6 @@ class SearchAnimeInteractor {
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-
                     for (anime in snapshot.children){
                         val encodeAnime:Anime? = anime.getValue(Anime::class.java)
                         encodeAnime?.id = anime.key

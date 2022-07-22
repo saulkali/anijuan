@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardBackgroundColor="@color/primaryDarkColor"
+    app:cardBackgroundColor="@color/primaryColor"
     android:layout_margin="@dimen/padding_common_min"
     app:cardCornerRadius="@dimen/radius_cards"
     android:elevation="@dimen/elevation_cards"

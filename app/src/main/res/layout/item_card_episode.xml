@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_margin="@dimen/padding_common_min"
     app:cardCornerRadius="@dimen/radius_cards"
-    app:cardBackgroundColor="@color/primaryDarkColor"
+    app:cardBackgroundColor="@color/primaryColor"
     android:elevation="@dimen/elevation_cards"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout

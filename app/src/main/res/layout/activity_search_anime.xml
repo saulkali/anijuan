@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_common_min"
         android:background="?attr/selectableItemBackground"
+        android:tint="@color/white"
         android:src="@drawable/ic_arrow_back"
 
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,7 @@
         android:text="@string/search_title"
         android:textColor="@android:color/darker_gray"
         android:textAppearance="?attr/textAppearanceHeadline4"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         app:layout_constraintStart_toEndOf="@id/ibBackPressed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -36,6 +37,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/padding_common_min"
+        app:endIconTint="@color/white"
+        app:startIconTint="@color/white"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         app:endIconMode="clear_text"
         app:startIconDrawable="@drawable/ic_search"
@@ -47,6 +50,8 @@
             android:id="@+id/etSearchAnime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:inputType="text"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -59,6 +64,7 @@
         android:layout_marginHorizontal="@dimen/padding_common_min"
         android:text="@string/helper_title_search"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textAppearance="?attr/textAppearanceHeadline6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

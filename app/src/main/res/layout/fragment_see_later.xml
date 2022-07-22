@@ -13,6 +13,7 @@
         android:layout_margin="@dimen/padding_common_min"
         android:text="@string/episode_save_title"
         android:textAppearance="?attr/textAppearanceHeadline6"
+        android:textColor="@color/white"
         android:textAlignment="center"
 
 
@@ -39,6 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/rvAnimeSave"
+        android:textColor="@color/white"
         android:layout_margin="@dimen/padding_common_min"
         android:textAppearance="?attr/textAppearanceHeadline6"
         android:textAlignment="center"

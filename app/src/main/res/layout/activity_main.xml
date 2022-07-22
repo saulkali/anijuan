@@ -18,8 +18,16 @@
             android:id="@+id/tbMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:titleTextColor="@color/white"
             app:title="@string/app_name"
+            app:titleCentered="true"
+            app:subtitle="saul burciaga hernandez"
+            app:subtitleCentered="true"
+            app:subtitleTextColor="@color/white"
             app:menu="@menu/menu_app_bar"
+            app:logo="@mipmap/icon_124"
+            app:logoScaleType="centerCrop"
+
             />
     </com.google.android.material.appbar.AppBarLayout>
     <FrameLayout

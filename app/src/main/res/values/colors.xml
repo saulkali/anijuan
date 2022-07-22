@@ -9,12 +9,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="yellow">#FFEB3B</color>
 
-    <color name="primaryColor">#3e2723</color>
-    <color name="background">#6a4f4b</color>
-    <color name="primaryDarkColor">#1b0000</color>
+    <color name="primaryColor">#333333</color>
+    <color name="background">#111111</color>
+    <color name="primaryDarkColor">#111111</color>
     <color name="secondaryColor">#3e2723</color>
     <color name="secondaryLightColor">#6a4f4b</color>
-    <color name="secondaryDarkColor">#1b0000</color>
+    <color name="secondaryDarkColor">#333333</color>
     <color name="primaryTextColor">#fafafa</color>
     <color name="secondaryTextColor">#ffffff</color>
 
